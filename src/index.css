@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  @apply bg-ehr-bg-primary text-ehr-text-primary font-sans antialiased;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-ehr-bg-secondary rounded;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded hover:bg-slate-400;
+}
+
+/* Utility classes for EHR */
+@layer components {
+  .ehr-card {
+    @apply bg-ehr-bg-card rounded-lg border border-ehr-border shadow-ehr;
+  }
+
+  .ehr-panel {
+    @apply bg-ehr-bg-card rounded-lg border border-ehr-border shadow-ehr overflow-hidden flex flex-col;
+  }
+
+  .ehr-panel-header {
+    @apply px-4 py-3 border-b border-ehr-border bg-slate-50 flex items-center justify-between shrink-0;
+  }
+
+  .ehr-panel-title {
+    @apply text-sm font-semibold text-ehr-text-primary;
+  }
+
+  .ehr-panel-content {
+    @apply p-4 overflow-auto flex-1;
+  }
+
+  .ehr-badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .ehr-badge-success {
+    @apply bg-emerald-100 text-emerald-800;
+  }
+
+  .ehr-badge-warning {
+    @apply bg-amber-100 text-amber-800;
+  }
+
+  .ehr-badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
+
+  .ehr-badge-info {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  .ehr-badge-neutral {
+    @apply bg-slate-100 text-slate-700;
+  }
+
+  .ehr-btn {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .ehr-btn-primary {
+    @apply bg-ehr-primary text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+
+  .ehr-btn-secondary {
+    @apply bg-white text-ehr-text-primary border border-ehr-border hover:bg-slate-50 focus:ring-slate-500;
+  }
+
+  .ehr-btn-ghost {
+    @apply text-ehr-text-secondary hover:bg-slate-100 focus:ring-slate-500;
+  }
+
+  .ehr-btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+
+  .ehr-input {
+    @apply w-full px-3 py-2 border border-ehr-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ehr-primary focus:border-transparent;
+  }
+
+  .ehr-label {
+    @apply block text-xs font-medium text-ehr-text-secondary mb-1;
+  }
+
+  .ehr-section-title {
+    @apply text-xs font-semibold text-ehr-text-secondary uppercase tracking-wider mb-2;
+  }
+
+  .ehr-link {
+    @apply text-ehr-primary hover:underline cursor-pointer;
+  }
+
+  .ehr-divider {
+    @apply border-t border-ehr-border my-3;
+  }
+
+  .ehr-list-item {
+    @apply py-2 border-b border-ehr-border last:border-0;
+  }
+
+  .ehr-status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+
+  .ehr-tooltip {
+    @apply absolute z-50 px-2 py-1 text-xs bg-slate-800 text-white rounded shadow-lg;
+  }
+
+  /* AI-specific styles */
+  .ai-indicator {
+    @apply inline-flex items-center gap-1 text-xs text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full;
+  }
+
+  .ai-summary-box {
+    @apply bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-lg p-3;
+  }
+
+  /* Target status indicators */
+  .target-at-goal {
+    @apply text-emerald-600;
+  }
+
+  .target-near-goal {
+    @apply text-amber-600;
+  }
+
+  .target-not-at-goal {
+    @apply text-red-600;
+  }
+
+  /* Trend indicators */
+  .trend-improving {
+    @apply text-emerald-600;
+  }
+
+  .trend-stable {
+    @apply text-slate-500;
+  }
+
+  .trend-worsening {
+    @apply text-red-600;
+  }
+
+  /* Quick action buttons */
+  .quick-action {
+    @apply flex items-center gap-2 px-3 py-2 rounded-lg border border-ehr-border hover:border-ehr-primary hover:bg-blue-50 cursor-pointer transition-colors;
+  }
+
+  /* Voice input indicator */
+  .voice-active {
+    @apply animate-pulse ring-2 ring-red-500 ring-opacity-50;
+  }
+}
+
+/* Animation for AI processing */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.ai-processing {
+  background: linear-gradient(90deg, #f3e8ff 0%, #e9d5ff 50%, #f3e8ff 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .ehr-panel {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
